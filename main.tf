@@ -5,6 +5,13 @@ terraform {
       version = "1.24.3"
     }
   }
+  backend "s3" {
+    bucket = "pvt-tf-state"
+    key    = "terraform.state"
+    region = "eu-central-1"
+    encrypt  = true
+    dynamodb_table = "terraform"
+  }
 }
 
 provider "vsphere" {
