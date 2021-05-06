@@ -73,7 +73,7 @@ resource "vsphere_virtual_machine" "vm" {
 
   disk {
     label = "disk1"
-    size  = 5
+    size  = 10
     unit_number = 1
   }
  
