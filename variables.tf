@@ -1,16 +1,3 @@
-variable "vsphere_user" {
-  type = string
-  description = "the username for vsphere"
-}
-variable "vsphere_password" {
-  type = string
-  description = "The password for vsphere"
-}
-variable "vsphere_server" {
-  type = string
-  description = "the hostname or ip address of your vcenter server"
-}
-
 variable "vsphere_folder" {
   type = string
   description = "the folder for your VM"
@@ -79,4 +66,14 @@ variable "timeout" {
 variable "linked_clone" {
   description = "Clone this virtual machine from a snapshot. Templates must have a single snapshot only in order to be eligible."
   default     = false
+}
+
+variable "vault_address" {
+  type = string
+  description = "Vault URL"
+}
+
+variable "vault_token" {
+  type = string
+  description = "Vault authentication token"
 }
