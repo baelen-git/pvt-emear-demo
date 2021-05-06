@@ -28,7 +28,7 @@ pipeline {
                 dir('.'){
 	                sh '''
 			terraform --version
-			outofdate=`terraform  --version | { grep "outdated!" || true; }`
+			outofdate=`terraform  --version | { grep "out of date!" || true; }`
 			if [ -n "$outofdate" ]; then 
 				cd $TF_HOME
 				wget -q -O tf.zip https://releases.hashicorp.com/terraform/0.15.1/terraform_0.15.1_linux_amd64.zip && unzip -o tf.zip && rm tf.zip 
