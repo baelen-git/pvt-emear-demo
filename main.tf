@@ -72,7 +72,7 @@ resource "vsphere_virtual_machine" "vm" {
   folder           = var.vsphere_folder
   annotation       = data.vsphere_virtual_machine.template.annotation
 
-  num_cpus = 8
+  num_cpus = 10
   memory   = var.vsphere_vm_memory 
   guest_id = var.vsphere_vm_guest 
   cpu_hot_add_enabled = true
