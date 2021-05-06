@@ -4,6 +4,10 @@ terraform {
       source = "hashicorp/vsphere"
       version = "1.24.3"
     }
+    vault = {
+      source = "hashicorp/vault"
+      version = "2.19.0"
+    }
   }
   backend "s3" {
     bucket = "pvt-tf-state"
@@ -14,10 +18,22 @@ terraform {
   }
 }
 
+provider "vault" {
+  address = var.vault_address
+  token   = var.vault_token
+}
+
+data "vault_generic_secret" "vsphere" {
+  path = "pvt21/vsphere_credentials"
+}
+
 provider "vsphere" {
-  user           = var.vsphere_user
-  password       = var.vsphere_password
-  vsphere_server = var.vsphere_server
+  #user           = var.vsphere_user
+  #password       = var.vsphere_password
+  #vsphere_server = var.vsphere_server
+  user                 = data.vault_generic_secret.vsphere.data.username
+  password             = data.vault_generic_secret.vsphere.data.password
+  vsphere_server       = data.vault_generic_secret.vsphere.data.hostname
 
   # if you have a self-signed cert
   allow_unverified_ssl = true
